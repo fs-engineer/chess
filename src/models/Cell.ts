@@ -1,6 +1,6 @@
-import { Colors } from "./Colors";
-import { Figure } from "./Figure";
-import { Board } from "./Board";
+import { Colors } from './Colors';
+import { Figure } from './figures/Figure';
+import { Board } from './Board';
 
 export class Cell {
   readonly x: number;
@@ -16,7 +16,7 @@ export class Cell {
     x: number,
     y: number,
     color: Colors,
-    figure: Figure | null
+    figure: Figure | null,
   ) {
     this.x = x;
     this.y = y;
