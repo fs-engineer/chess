@@ -10,4 +10,11 @@ export class Rook extends Figure {
     this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
     this.name = FigureNames.ROOK;
   }
+
+  canMove(target: Cell): boolean {
+    // TODO check this simplify
+    if (!super.canMove(target)) return false;
+
+    return true;
+  }
 }
