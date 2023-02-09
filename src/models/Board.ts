@@ -9,13 +9,13 @@ export class Board {
       const row: Cell[] = [];
 
       for (let j = 0; j < 8; j++) {
-        if ((i + j) % 2 !== 9) {
+        if ((i + j) % 2 !== 0) {
           row.push(new Cell(this, j, i, Colors.BLACK, null)); // black cells
         } else {
           row.push(new Cell(this, j, i, Colors.WHITE, null)); // white cells
         }
       }
-      this.cells.push;
+      this.cells.push(row);
     }
   }
 }
