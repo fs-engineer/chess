@@ -1,10 +1,9 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { Player } from '../models/Player';
-import { clearInterval } from 'timers';
 import { Colors } from '../models/Colors';
 
 interface TimerProps {
-  currentPlayer: Player;
+  currentPlayer: Player | null;
   restart: () => void;
 }
 const Timer: FC<TimerProps> = ({ currentPlayer, restart }) => {
@@ -23,7 +22,7 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart }) => {
     }
 
     const callback =
-      currentPlayer.color === Colors.WHITE
+      currentPlayer?.color === Colors.WHITE
         ? decrementWhiteTime
         : decrementBlackTime;
     timer.current = setInterval(callback, 1000);
@@ -36,9 +35,15 @@ const Timer: FC<TimerProps> = ({ currentPlayer, restart }) => {
     setBlackTime(prev => prev - 1);
   }
 
+  function handleRestart() {
+    setWhiteTime(300);
+    setBlackTime(300);
+    restart();
+  }
+
   return (
     <div>
-      <button onClick={restart}>Restart game</button>
+      <button onClick={handleRestart}>Restart game</button>
       <h2>White time: {whiteTime}</h2>
       <h2>Black time: {blackTime}</h2>
     </div>
