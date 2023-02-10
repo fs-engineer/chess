@@ -27,7 +27,15 @@ export class Cell {
     this.board = board;
   }
 
-  isEmpty() {
+  isEnemy(target: Cell): boolean {
+    if (target.figure) {
+      return this.figure?.color !== target.figure.color;
+    }
+
+    return false;
+  }
+
+  isEmpty(): boolean {
     return this.figure === null;
   }
 
@@ -91,6 +99,11 @@ export class Cell {
   moveFigure(target: Cell) {
     if (this.figure && this.figure.canMove(target)) {
       this.figure.moveFigure(target);
+
+      if (target.figure) {
+        this.board.addLostFigure(target.figure);
+      }
+
       target.setFigure(this.figure);
       this.figure = null;
     }
